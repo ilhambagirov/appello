@@ -72,12 +72,44 @@ spec:
     run: web2
   type: NodePort
 
+#gcp
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: basic-ingress
+# spec:
+#   defaultBackend:
+#     service:
+#       name: web
+#       port:
+#         number: 8080
+#   rules:
+#     - http:
+#         paths:
+#           - path: /
+#             pathType: Exact
+#             backend:
+#               service:
+#                 name: web2
+#                 port:
+#                   number: 8080
+#           - path: /student
+#             pathType: Exact
+#             backend:
+#               service:
+#                 name: webapp-service
+#                 port:
+#                   number: 8080
+
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: basic-ingress
 spec:
+  ingressClassName: alb
   defaultBackend:
     service:
       name: web
