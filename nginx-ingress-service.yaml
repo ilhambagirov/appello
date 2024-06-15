@@ -108,7 +108,6 @@ kind: Ingress
 metadata:
   name: basic-ingress
 spec:
-  ingressClassName: alb
   defaultBackend:
     service:
       name: web
