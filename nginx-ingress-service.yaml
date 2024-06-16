@@ -139,15 +139,21 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   ingressClassName: alb
+  tls:
+    - hosts:
+      - socialo.pics
+      secretName: hello-world-ca-tsl
   defaultBackend:
     service:
       name: web
       port:
         number: 8080
   rules:
-    - http:
+    - host: socialo.pics
+      http:
         paths:
           - path: /
             pathType: Exact
